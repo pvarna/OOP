@@ -16,6 +16,7 @@ struct Student
     void readStudent();
     void fixName();
     double averageScore();
+    char* firstLastName();
 };
 
 struct Students

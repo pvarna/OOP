@@ -82,6 +82,35 @@ double Student::averageScore()
     return sum/5;
 }
 
+char* Student::firstLastName()
+{
+    char buffer[100];
+    int indexBuffer = 0, i = 0;
+    bool secondName = false;
+    while (name[i])
+    {
+        if (!secondName)
+        {
+            buffer[indexBuffer] = name[i];
+            ++indexBuffer;
+        }
+        if (name[i] == ' ')
+        {
+            secondName = !secondName;
+        }
+        ++i;
+    }
+
+    size_t size;
+
+    size = strlen(buffer);
+
+    char* result = new(std::nothrow) char[size];
+    strcpy(result, buffer);
+
+    return result;
+}
+
 void Students::addStudent()
 {
     Student newStudent;
@@ -105,8 +134,10 @@ void Students::printStudentsBornInMarch()
     {
         if (students[i].EGN[3] == '3')
         {
-            std::cout << students[i].name << ", Average score: " << students[i].averageScore() << std::endl;
+            char* name = students[i].firstLastName();
+            std::cout << name << ", Average score: " << students[i].averageScore() << std::endl;
             found = true;
+            delete[] name;
         }
     }
 
@@ -136,7 +167,8 @@ void Students::printStudentWithHighestScore()
         }
     }
 
-    std::cout << students[maxIndex].name << ", Score: " << maxScore << std::endl;
+    char* name = students[maxIndex].firstLastName();
+    std::cout << name << ", Score: " << maxScore << std::endl;
 }
 
 void Students::deallocateMemory()
