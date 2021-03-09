@@ -41,5 +41,7 @@ int main ()
         std::cout << "The rectangles do not intersect" << std::endl;
     }
 
+    rectangular1.printRectangle();
+
     return 0;
 }

@@ -12,6 +12,7 @@ struct Rectangular
     Point lowerRight;
 
     void readRectangular();
+    void printRectangle();
     bool isPointContained(Point point);
 };
 
