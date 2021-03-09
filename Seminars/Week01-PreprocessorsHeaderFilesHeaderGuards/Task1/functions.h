@@ -1,3 +1,6 @@
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
 struct DynArray
 {
     int capacity;
@@ -17,4 +20,4 @@ int get(DynArray array, int index);
 
 void remove(DynArray& array, int index);
 
-
+#endif 

@@ -1,3 +1,6 @@
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
 struct Point
 {
     double x;
@@ -18,3 +21,4 @@ struct Rectangular
 
 bool doRectanglesIntersect(Rectangular rectangular1, Rectangular rectangular2);
 
+#endif

@@ -1,3 +1,6 @@
+#ifndef FUNCTIONS_H
+#define FUNCTION_H
+
 struct Grade
 {
     char* subject;
@@ -33,3 +36,5 @@ struct Students
 char toUpper(char ch);
 
 void printMenu();
+
+#endif

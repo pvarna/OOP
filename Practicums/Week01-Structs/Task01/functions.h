@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
 const int MAX_NUMBER_BOOKS = 1000;
 
@@ -23,3 +24,5 @@ struct Library
 };
 
 void printMenu();
+
+#endif

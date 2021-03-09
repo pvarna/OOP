@@ -1,3 +1,6 @@
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
 struct Point
 {
     double x;
@@ -9,3 +12,5 @@ struct Point
 };
 
 double distanceBetweenPoints(Point point1, Point point2);
+
+#endif
