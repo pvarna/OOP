@@ -27,6 +27,11 @@ void Student::readStudent()
     std::cin.getline(buffer, 100);
     size = strlen(buffer);
     name = new(std::nothrow) char[size];
+    if (!name)
+    {
+        std::cout << "Memory problem" << std::endl;
+        return;
+    }
     strcpy(name, buffer);
 
     std::cout << "Please enter the EGN of the student: ";

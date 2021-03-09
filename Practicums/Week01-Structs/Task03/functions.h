@@ -10,7 +10,7 @@ struct Student
 {
     char* name;
     char EGN[10];
-    char facultyNumber[6];
+    char facultyNumber[5];
     Grade grades[5];
 
     void readStudent();
