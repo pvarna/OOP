@@ -17,6 +17,7 @@ void Book::initialize()
         return;
     }
     strcpy(title, buffer);
+    title[size] = '\0';
 
     std::cout << "Please enter the author of the book: ";
     std::cin.getline(buffer, 100);
@@ -28,6 +29,7 @@ void Book::initialize()
         return;
     }
     strcpy(author, buffer);
+    author[size] = '\0';
 
     std::cout << "Please enter the genre of the book: ";
     std::cin.getline(buffer, 100);
@@ -39,6 +41,7 @@ void Book::initialize()
         return;
     }
     strcpy(genre, buffer);
+    genre[size] = '\0';
 
     std::cout << "Please enter the price of the book (BGN): ";
     std::cin >> price;

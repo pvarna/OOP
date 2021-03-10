@@ -32,6 +32,7 @@ int main ()
     myLibrary.printBookByPrice(isMoreExpensive);
 
     myLibrary.deallocateMemory();
+    bestBook.deallocateMemory();
 
     return 0;
 }
