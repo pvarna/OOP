@@ -31,11 +31,11 @@ void Rectangular::printRectangle()
         return;
     }
 
-    int rows = (int)lowerRight.y;
-    int columns = (int)lowerRight.x;
+    int rows = (int)lowerRight.y + 1;
+    int columns = (int)lowerRight.x + 1;
 
     char** matrix = new(std::nothrow) char*[rows];
-    for (int i = 0; i < lowerRight.y; ++i)
+    for (int i = 0; i < rows; ++i)
     {
         matrix[i] = new(std::nothrow) char[columns];
     }
@@ -59,7 +59,7 @@ void Rectangular::printRectangle()
     {
         for (int j = 0; j < columns; ++j)
         {
-            std::cout << matrix[i][j];
+            std::cout << matrix[i][j] << " ";
         }
         std::cout << std::endl;
     }
