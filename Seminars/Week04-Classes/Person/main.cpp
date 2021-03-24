@@ -19,5 +19,11 @@ int main ()
 
     std::cout << pesho;
 
+    Person soncheMakaronche;
+
+    std::cin >> soncheMakaronche;
+
+    std::cout << soncheMakaronche;
+
     return 0;
 }
