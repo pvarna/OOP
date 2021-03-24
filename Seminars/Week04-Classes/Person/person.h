@@ -11,7 +11,7 @@ private:
 public:
     Person();
     Person(const char* _name, const int _age, const bool _hasDriveLicense);
-    Person(Person& person);
+    Person(const Person& person);
 
     char* getName() const;
     int getAge() const;

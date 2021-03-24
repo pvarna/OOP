@@ -23,7 +23,7 @@ Person::Person(const char* _name, const int _age, const bool _hasDriveLicense)
     this->hasDriveLicense = _hasDriveLicense;
 }
 
-Person::Person(Person& person)
+Person::Person(const Person& person)
 {
     this->name = new char[strlen(person.name) + 1];
     strcpy(this->name, person.name);
