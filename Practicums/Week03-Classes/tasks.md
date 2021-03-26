@@ -22,8 +22,8 @@
 Напишете клас University съдържащ масив от студенти.  
 
 Напишете следните член фунции на класа:
-- void createStudents(Student * students) за инициализиране на масив от студенти. Използвайте динамична памет.   
-- void sort(Enum field, String order) за сортиране на студентите: field (name, fn, averageScore); order (asc, desc)  
+- void createStudents(Student * students, size_t size) за инициализиране на масив от студенти. Използвайте динамична памет.   
+- void sort(Enum field, Enum order) за сортиране на студентите: field (name, fn, averageScore); order (asc, desc)  
 - void print() за принтиране в конзолата на всички студенти.  
 
 ## Задача 4
