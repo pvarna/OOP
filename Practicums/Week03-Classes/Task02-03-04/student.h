@@ -11,9 +11,12 @@ private:
     Grade grades[5];
 
 public:
+    Student();
+    Student(const char* name, const char* EGN, const char* FN, 
+            double grade1, double grade2, double grade3, double grade4, double grade5);
     void input();
     double getAverageGrade();
-    void printStudentInfo();
+    void print();
     void printFNAndGrades();
 
     void deallocateMemory();
@@ -27,4 +30,6 @@ public:
     void setEGN(const char* wantedEGN);
     void setFacultyNumber(const char* wantedFN);
     void setGrades(Grade* wantedGrades);
+
+    ~Student();
 };

@@ -20,177 +20,94 @@ enum Order
     desc
 };
 
-enum Role
+/*enum Role
 {
     students,
     teachers
-};
+};*/
 
 template <typename T>
-using sortingFunction = bool (*) (T, T);
+using sortingFunction = bool (*) (T, T, Order);
 
 template <typename T>
-void sortAllTypes(T* people, sortingFunction<T> sortingFunction, size_t size)
+bool nameSort(T first, T second, Order order)
 {
-    for (int i = 0; i < size; ++i)
-    {
-        for (int j = i+1; j < size; ++j)
-        {
-            if (sortingFunction(people[i], people[j]))
-            {
-                std::swap(people[i], people[j]);
-            }
-        }
-    }
+    int comparison = strcmp(first.getName(), second.getName());
+    return (order == asc) ? (comparison > 0) : (comparison < 0);
 }
 
 template <typename T>
-bool nameSortAsc(T first, T second)
+bool fnSort(T first, T second, Order order)
 {
-    return (strcmp(first.getName(), second.getName()) > 0);
+    int comparison = strcmp(first.getFN(), second.getFN());
+    return (order == asc) ? (comparison > 0) : (comparison < 0);
 }
 
 template <typename T>
-bool nameSortDesc(T first, T second)
+bool averageGradeSort(T first, T second, Order order)
 {
-    return strcmp(first.getName(), second.getName()) < 0;
+    return (order == asc) ? (first.getAverageGrade() > second.getAverageGrade()) : (first.getAverageGrade() < second.getAverageGrade());
 }
 
-bool fnSortAsc(Student first, Student second)
-{
-    return strcmp(first.getFN(), second.getFN()) > 0;
-}
-
-bool fnSortDesc(Student first, Student second)
-{
-    return strcmp(first.getFN(), second.getFN()) < 0;
-}
-
-bool averageGradeSortAsc(Student first, Student second)
-{
-    return first.getAverageGrade() > second.getAverageGrade();
-}
-
-bool averageGradeSortDesc(Student first, Student second)
-{
-    return first.getAverageGrade() < second.getAverageGrade();
-}
-
+template <typename T>
 class University
 {
     private:
-        Student* listOfStudents;
-        Teacher* listOfTeachers;
-        size_t numberOfStudents;
-        size_t numberOfTeachers;
+        T* people;
+        size_t numberPeople = 0;
 
-    public:
-
-        void createStudents(Student* students, size_t size)
+        sortingFunction<T> getComparison(Field field)
         {
-            this->listOfStudents = new(std::nothrow) Student[size];
-            if (!this->listOfStudents)
-            {
-                std::cout << "Memory problem!" << std::endl;
-                return;
-            }
-
-            for (int i = 0; i < size; ++i)
-            {
-                students[i].copyStudent(this->listOfStudents[i]);
-            }
-
-            this->numberOfStudents = size;
-        }
-        void createTeachers(Teacher* teachers, size_t size)
-        {
-            this->listOfTeachers = new(std::nothrow) Teacher[size];
-            if (!this->listOfTeachers)
-            {
-                std::cout << "Memory problem!" << std::endl;
-                return;
-            }
-
-            for (int i = 0; i < size; ++i)
-            {
-                teachers[i].copyTeacher(this->listOfTeachers[i]);
-            }
-
-            this->numberOfTeachers = size;
-        }
-
-        void sort(Field field, Order order, Role role)
-        {
-            if (role == teachers)
-            {
-                if (field != name)
-                {
-                    std::cout << "Invalid operation" << std::endl;
-                    return;
-                }
-                else
-                {
-                    if (order == asc)
-                    {
-                        sortAllTypes<Teacher>(listOfTeachers, nameSortAsc<Teacher>, numberOfTeachers);
-                    }
-                    else
-                    {
-                        sortAllTypes<Teacher>(listOfTeachers, nameSortDesc<Teacher>, numberOfTeachers);
-                    }
-                }
-            }
-
             switch (field)
             {
-            case name:
-                if (order == asc)
-                {
-                    sortAllTypes<Student>(listOfStudents, nameSortAsc<Student>, numberOfStudents);
-                }
-                else
-                {
-                    sortAllTypes<Student>(listOfStudents, nameSortDesc<Student>, numberOfStudents);
-                }
-                break;
-            case fn:
-                if (order == asc)
-                {
-                    sortAllTypes<Student>(listOfStudents, fnSortAsc, numberOfStudents);
-                }
-                else
-                {
-                    sortAllTypes<Student>(listOfStudents, fnSortDesc, numberOfStudents);
-                }
-                break;
-            case averageScore:
-                if (order == asc)
-                {
-                    sortAllTypes<Student>(listOfStudents, averageGradeSortAsc, numberOfStudents);
-                }
-                else
-                {
-                    sortAllTypes<Student>(listOfStudents, averageGradeSortDesc, numberOfStudents);
-                }
-                break;
-            default:
-                std::cout << "Invalid operation" << std::endl;
-                return;
+                case name:
+                    return nameSort<T>;
+                case fn:
+                    return fnSort<T>;
+                case averageScore:
+                    return averageGradeSort<T>;
+                default:
+                    return nameSort<T>;
             }
         }
 
-        void printAllStudents()
+    public:
+        void createPeople(T* people, size_t size)
         {
-            for (int i = 0; i < this->numberOfStudents; ++i)
+            this->people = new(std::nothrow) T[size];
+            if (!this->people)
             {
-                this->listOfStudents[i].printStudentInfo();
+                std::cout << "Memory problem!" << std::endl;
+                return;
+            }
+
+            for (int i = 0; i < size; ++i)
+            {
+                this->people[i] = people[i];
+            }
+
+            this->numberPeople = size;
+        }
+
+        void sort(Field field, Order order)
+        {
+            for (int i = 0; i < numberPeople; ++i)
+            {
+                for (int j = i+1; j < numberPeople; ++j)
+                {
+                    if (getComparison(field)(people[i], people[j], order))
+                    {
+                        std::swap(people[i], people[j]);
+                    }
+                }
             }
         }
-        void printAllTeachers()
+
+        void printPeople()
         {
-            for (int i = 0; i < this->numberOfTeachers; ++i)
+            for (int i = 0; i < this->numberPeople; ++i)
             {
-                this->listOfTeachers[i].printTeacherInfo();
+                this->people[i].print();
             }
         }
 };

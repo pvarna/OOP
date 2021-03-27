@@ -2,6 +2,39 @@
 #include <cstring>
 #include "student.h"
 
+Student::Student()
+{
+    this->name = nullptr;
+    this->facultyNumber[0] = '\0';
+    this->grades[0].grade = 2;
+    this->grades[1].grade = 2;
+    this->grades[2].grade = 2;
+    this->grades[3].grade = 2;
+    this->grades[4].grade = 2;
+}
+Student::Student(const char* name, const char* EGN, const char* FN, 
+            double grade1, double grade2, double grade3, double grade4, double grade5)
+{
+    size_t size = strlen(name);
+    this->name = new char[size + 1];
+    strcpy(this->name, name);
+    
+    strcpy(this->facultyNumber, FN);
+
+    strcpy(this->EGN, EGN);
+
+    this->grades[0].grade = grade1;
+    this->grades[1].grade = grade2;
+    this->grades[2].grade = grade3;
+    this->grades[3].grade = grade4;
+    this->grades[4].grade = grade5;
+}
+
+Student::~Student()
+{
+    deallocateMemory();
+}
+
 void Student::input()
 {
     char buffer[100];
@@ -47,7 +80,7 @@ double Student::getAverageGrade()
     return sum / 5;
 }
 
-void Student::printStudentInfo()
+void Student::print()
 {
     /*std::cout << "Name: " << this->name << std::endl;
     std::cout << "EGN: " << this->EGN << std::endl;

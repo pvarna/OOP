@@ -44,74 +44,92 @@ int main()
         currentTeacher.copyTeacher(myTeachers[i]);
     }
 
+    /*size_t numberStudents = 3, numberTeachers = 2;
 
-    University university;
-    university.createStudents(myStudents, numberStudents);
-    university.createTeachers(myTeachers, numberTeachers);
+    Student* myStudents = new Student[3];
+    Student student1("Peter Kolev", "014611XXXX", "82214", 6, 5, 5, 6, 4);
+    Student student2("Sonya Nikolova", "015027XXXX", "82213", 5, 6, 5, 5, 6);
+    Student student3("Mihail Enev", "014611XXXX", "7....", 6, 5, 6, 5, 6);
+
+    myStudents[0] = student1;
+    myStudents[1] = student2;
+    myStudents[2] = student3;
+
+    Teacher* myTeachers = new Teacher[2];
+    Teacher teacher1("Petar Armyanov", "KN");
+    Teacher teacher2("Stefan Gerdzhikov", "IS");
+
+    myTeachers[0] = teacher1;
+    myTeachers[1] = teacher2;*/
+
+    University<Student> university1;
+    University<Teacher> university2;
+    university1.createPeople(myStudents, numberStudents);
+    university2.createPeople(myTeachers, numberTeachers);
 
     std::cout << "Students without sorting: " << std::endl;
-    university.printAllStudents();
+    university1.printPeople();
 
     std::cout << std::endl;
 
     std::cout << "Teachers without sorting: " << std::endl;
-    university.printAllTeachers();
+    university2.printPeople();
 
     std::cout << std::endl;
 
-    university.sort(name, asc, students);
+    university1.sort(name, asc);
 
     std::cout << "Students sorted ascending per name: " << std::endl;
-    university.printAllStudents();
+    university1.printPeople();
 
     std::cout << std::endl;
 
-    university.sort(name, desc, students);
+    university1.sort(name, desc);
 
     std::cout << "Students sorted descending per name: " << std::endl;
-    university.printAllStudents();
+    university1.printPeople();
 
     std::cout << std::endl;
 
-    university.sort(name, asc, teachers);
+    university2.sort(name, asc);
 
     std::cout << "Teachers sorted ascending per name: " << std::endl;
-    university.printAllTeachers();
+    university2.printPeople();
 
     std::cout << std::endl;
 
-    university.sort(name, desc, teachers);
+    university2.sort(name, desc);
 
     std::cout << "Teachers sorted descending per name: " << std::endl;
-    university.printAllTeachers();
+    university2.printPeople();
 
     std::cout << std::endl;
 
-    university.sort(fn, asc, students);
+    university1.sort(fn, asc);
 
     std::cout << "Students sorted ascending per FN: " << std::endl;
-    university.printAllStudents();
+    university1.printPeople();
 
     std::cout << std::endl;
 
-    university.sort(fn, desc, students);
+    university1.sort(fn, desc);
 
     std::cout << "Students sorted descending per FN: " << std::endl;
-    university.printAllStudents();
+    university1.printPeople();
 
     std::cout << std::endl;
 
-    university.sort(averageScore, asc, students);
+    university1.sort(averageScore, asc);
 
     std::cout << "Students sorted ascending per average score: " << std::endl;
-    university.printAllStudents();
+    university1.printPeople();
 
     std::cout << std::endl;
 
-    university.sort(averageScore, desc, students);
+    university1.sort(averageScore, desc);
 
     std::cout << "Students sorted descending per average score: " << std::endl;
-    university.printAllStudents();
+    university1.printPeople();
 
     std::cout << std::endl;
 

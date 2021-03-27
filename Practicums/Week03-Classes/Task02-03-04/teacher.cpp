@@ -2,6 +2,29 @@
 #include <cstring>
 #include "teacher.h"
 
+Teacher::Teacher()
+{
+    this->name = nullptr;
+    this->teachingClass = nullptr;
+}
+
+Teacher::Teacher(const char* name, const char* teachingClass)
+{
+    size_t size = strlen(name);
+    this->name = new char[size + 1];
+    strcpy(this->name, name);\
+
+    size = strlen(teachingClass);
+    this->teachingClass = new char[size + 1];
+    strcpy(this->teachingClass, teachingClass);
+
+}
+
+Teacher::~Teacher()
+{
+    deallocateMemory();
+}
+
 void Teacher::input()
 {
     char buffer[100];
@@ -38,7 +61,17 @@ char* Teacher::getName()
     return this->name;
 }
 
-void Teacher::printTeacherInfo()
+char* Teacher::getFN()
+{
+    return nullptr;
+}
+
+double Teacher::getAverageGrade()
+{
+    return 2;
+}
+
+void Teacher::print()
 {
     std::cout << this->name << ", " << this->teachingClass << std::endl;
 }
