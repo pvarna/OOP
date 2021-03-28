@@ -4,8 +4,8 @@
 
 ToDoList::ToDoList()
 {
-    this->tasks = new Task[this->capacity];
     this->capacity = 2;
+    this->tasks = new Task[this->capacity];
 }
 
 ToDoList::ToDoList(const size_t capacity)
