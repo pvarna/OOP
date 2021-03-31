@@ -2,42 +2,14 @@
 #include <cstring>
 #include "car.h"
 
-void Car::setOwner(const Person& _owner)
-{
-    this->owner = _owner;
-}
-
-void Car::setBrand(const char* _brand)
-{
-    if (this->brand)
-    {
-        delete[] this->brand;
-    }
-    this->brand = new char[strlen(_brand) + 1];
-    strcpy(this->brand, _brand);
-}
-
-void Car::setLicensePlate(const char* _licensePlate)
-{
-    if (this->licensePlate)
-    {
-        delete[] this->licensePlate;
-    }
-    this->licensePlate = new char[strlen(_licensePlate) + 1];
-    strcpy(this->licensePlate, _licensePlate);
-}
-
-void Car::setColor(const Color& _color)
-{
-    this->color = _color;
-}
-
 void Car::copy(const Car& other)
 {
-    setOwner(other.owner);
-    setBrand(other.brand);
-    setLicensePlate(other.licensePlate);
-    setColor(other.color);    
+    this->owner = other.owner;
+    this->brand = new char[strlen(other.brand) + 1];
+    strcpy(this->brand, other.brand);
+    this->licensePlate = new char[strlen(other.licensePlate) + 1];
+    strcpy(this->licensePlate, other.licensePlate);
+    this->color = other.color;
 }
 
 void Car::deallocate()
@@ -54,28 +26,27 @@ void Car::deallocate()
 
 Car::Car() : owner()
 {
-    //this->owner();
     this->brand = nullptr;
     this->licensePlate = nullptr;
     this->color = UNKNOWN;
 }
 
 Car::Car(const Person _owner, const char* _brand, const char* _licensePlate, const Color _color)
-{
-    setOwner(_owner);
-    setBrand(_brand);
-    setLicensePlate(_licensePlate);
-    setColor(_color);
+{   
+    this->owner = _owner;
+
+    this->brand = new char[strlen(_brand) + 1];
+    strcpy(this->brand, _brand);
+
+    this->licensePlate = new char[strlen(_licensePlate) + 1];
+    strcpy(this->licensePlate, _licensePlate);
+
+    this->color = _color;
 }
 
 Car::Car(const Car& other)
 {
     copy(other);
-}
-
-Car::~Car()
-{
-    deallocate();
 }
 
 Car& Car::operator = (const Car& other)
@@ -107,6 +78,36 @@ char* Car::getLicensePlate() const
 Color Car::getColor() const
 {
     return this->color;
+}
+
+void Car::setOwner(const Person& _owner)
+{
+    this->owner = _owner;
+}
+
+void Car::setBrand(const char* _brand)
+{
+    if (this->brand)
+    {
+        delete[] this->brand;
+    }
+    this->brand = new char[strlen(_brand) + 1];
+    strcpy(this->brand, _brand);
+}
+
+void Car::setLicensePlate(const char* _licensePlate)
+{
+    if (this->licensePlate)
+    {
+        delete[] this->licensePlate;
+    }
+    this->licensePlate = new char[strlen(_licensePlate) + 1];
+    strcpy(this->licensePlate, _licensePlate);
+}
+
+void Car::setColor(const Color& _color)
+{
+    this->color = _color;
 }
 
 void Car::print()
@@ -144,4 +145,9 @@ void Car::print()
         break;
     }
     std::cout << std::endl;
+}
+
+Car::~Car()
+{
+    deallocate();
 }

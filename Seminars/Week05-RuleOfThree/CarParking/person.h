@@ -1,5 +1,4 @@
 #pragma once
-//#include <iostream>
 
 class Person
 {
@@ -15,6 +14,8 @@ public:
     Person();
     Person(const char* _name, const int _age, const bool _hasDriveLicense);
     Person(const Person& other);
+    
+    Person& operator = (const Person& other);
 
     char* getName() const;
     int getAge() const;
@@ -25,10 +26,6 @@ public:
     void setHasDriveLicense(const bool _hasDriveLicense);
 
     void print();
-
-    Person& operator = (const Person& other);
-    //friend std::ostream& operator << (std::ostream& out, const Person& person);
-    //friend std::istream& operator >> (std::istream& in, Person& person); 
 
     ~Person();
 };
