@@ -16,7 +16,7 @@ private:
 
 public:
     Car();
-    Car(const Person _owner, const char* _brand, const char* _licensePlate, const Color _color);
+    Car(const Person& _owner, const char* _brand, const char* _licensePlate, const Color _color);
     Car(const Car& other);
 
     Car& operator = (const Car& other);
@@ -29,7 +29,7 @@ public:
     void setOwner(const Person& _owner);
     void setBrand(const char* _brand);
     void setLicensePlate(const char* _licensePlate);
-    void setColor(const Color& _color);
+    void setColor(const Color _color);
 
     void print();
 

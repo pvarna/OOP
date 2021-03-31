@@ -52,7 +52,7 @@ Parking::Parking() :owner()
     this->size = 0;
 }
 
-Parking::Parking(const char* _nameCompany, const Person _owner, const Car* _cars,
+Parking::Parking(const char* _nameCompany, const Person& _owner, const Car* _cars,
          const size_t _size, const size_t _capacity)
 {
     this->nameCompany = new char[strlen(_nameCompany) + 1];

@@ -5,10 +5,13 @@
 void Car::copy(const Car& other)
 {
     this->owner = other.owner;
+
     this->brand = new char[strlen(other.brand) + 1];
     strcpy(this->brand, other.brand);
+
     this->licensePlate = new char[strlen(other.licensePlate) + 1];
     strcpy(this->licensePlate, other.licensePlate);
+    
     this->color = other.color;
 }
 
@@ -31,7 +34,7 @@ Car::Car() : owner()
     this->color = UNKNOWN;
 }
 
-Car::Car(const Person _owner, const char* _brand, const char* _licensePlate, const Color _color)
+Car::Car(const Person& _owner, const char* _brand, const char* _licensePlate, const Color _color)
 {   
     this->owner = _owner;
 
@@ -105,7 +108,7 @@ void Car::setLicensePlate(const char* _licensePlate)
     strcpy(this->licensePlate, _licensePlate);
 }
 
-void Car::setColor(const Color& _color)
+void Car::setColor(const Color _color)
 {
     this->color = _color;
 }

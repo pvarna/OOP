@@ -18,7 +18,7 @@ private:
 
 public:
     Parking();
-    Parking(const char* _nameCompany, const Person _owner, const Car* _cars,
+    Parking(const char* _nameCompany, const Person& _owner, const Car* _cars,
              const size_t _size, const size_t _capacity);
     Parking(const Parking& other);
 
