@@ -48,7 +48,14 @@ void ToDoList::pushTask(const Task task)
 
 Task ToDoList::popTask()
 {
-    Task result = this->tasks[0];
+    Task result;
+    
+    if (this->size == 0)
+    {
+        return result;
+    }
+
+    result = this->tasks[0];
     
     for (int i = 0; i < this->size-1; ++i)
     {
