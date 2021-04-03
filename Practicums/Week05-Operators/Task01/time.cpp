@@ -91,3 +91,13 @@ void Time::print()
               << ((this->minutes < 10) ? "0" : "") << this->minutes << std::endl;
 
 }
+
+bool Time::operator == (const Time& other)
+{
+    return (this->hours == other.hours && this->minutes == other.minutes);
+}
+
+bool operator == (const Time& left, const Time& right)
+{
+    return (left.hours == right.hours && left.minutes == right.minutes);
+}

@@ -16,6 +16,8 @@ public:
     Time operator + (const int hours);
     friend Time operator + (const int hours, Time& other);
     bool operator > (const Time& other);
+    bool operator == (const Time& other);
+    friend bool operator == (const Time& left, const Time& right);
 
     void print();
 };

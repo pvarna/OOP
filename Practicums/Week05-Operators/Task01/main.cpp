@@ -19,5 +19,9 @@ int main ()
     t5 = 3 + t4;
     t5.print();
 
+    Time t10(10, 30), t11(10,30), t12(0, 0), t13;
+
+    std::cout << std::boolalpha << (t10 == t11) << " " << (t12 == t13) << std::endl;
+
     return 0;
 }
