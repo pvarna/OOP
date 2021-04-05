@@ -21,6 +21,7 @@ public:
 
     Student& operator = (const Student& other);
     bool operator == (const Student& other);
+    friend bool operator == (const Student& left, const Student& right);
     bool operator != (const Student& other);
 
     void input();

@@ -109,6 +109,10 @@ University& University::operator += (const Student& student)
     {
         this->students[this->numberStudents++] = student;
     }
+    else
+    {
+        std::cout << "This student is already in the university" << std::endl;
+    }
 
     return *this;
 }
@@ -123,6 +127,12 @@ University& University::operator -= (const Student& student)
             index = i;
             break;
         }
+    }
+
+    if (index == -1)
+    {
+        std::cout << "There is no such student" << std::endl;
+        return *this;
     }
 
     for (int i = index; i < this->numberStudents - 1; ++i)
@@ -149,4 +159,14 @@ void University::printSizeCapacity()
     std::cout << "Size: " << this->numberStudents << std::endl;
     std::cout << "Capacity: " << this->capacity << std::endl;
     std::cout << (double)this->numberStudents/(double)this->capacity*100 << "% full" << std::endl;
+}
+
+size_t University::getSize() const
+{
+    return this->numberStudents;
+}
+
+size_t University::getCapacity() const
+{
+    return this->capacity;
 }

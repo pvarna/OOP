@@ -44,6 +44,9 @@ class University
         University& operator += (const Student& student);
         University& operator -= (const Student& student);
 
+        size_t getSize() const;
+        size_t getCapacity() const;
+
         Student& operator [] (int index); 
 
         void printSizeCapacity();
