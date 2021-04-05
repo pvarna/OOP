@@ -85,6 +85,14 @@ bool Time::operator > (const Time& other)
     return thisMinutes > otherMinutes;
 }
 
+bool operator > (const Time& left, const Time& right)
+{
+    int leftMinutes = left.hours*60 + left.minutes;
+    int rightMinutes = right.hours*60 + right.minutes;
+
+    return leftMinutes > rightMinutes;
+}
+
 void Time::print()
 {
     std::cout << ((this->hours < 10) ? "0" : "") << this->hours << ":"
@@ -100,4 +108,14 @@ bool Time::operator == (const Time& other)
 bool operator == (const Time& left, const Time& right)
 {
     return (left.hours == right.hours && left.minutes == right.minutes);
+}
+
+void Time::setHours (const int hours)
+{
+    this->hours = hours;
+}
+
+void Time::setMinutes (const int minutes)
+{
+    this->minutes = minutes;
 }

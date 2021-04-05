@@ -33,6 +33,30 @@ bool WashingMachine::operator > (const WashingMachine& other)
            this->waterConsumption < other.waterConsumption); 
 }
 
+bool operator > (const WashingMachine& left, const WashingMachine& right)
+{
+    return (left.massLaundry > right.massLaundry) || 
+           (left.massLaundry == right.massLaundry && left.electricalConsumption < right.electricalConsumption) || 
+           
+           (left.massLaundry == right.massLaundry && left.electricalConsumption == right.electricalConsumption && 
+           left.waterConsumption < right.waterConsumption);
+}
+
+void WashingMachine::setMassLaundry(const int massLaundry)
+{
+    this->massLaundry = massLaundry;
+}
+
+void WashingMachine::setElConsumption(const double electricalConsumption)
+{
+    this->electricalConsumption = electricalConsumption;
+}
+
+void WashingMachine::setWaterConsuption(const double waterConsumption)
+{
+    this->waterConsumption = waterConsumption;
+}
+
 std::ostream& operator << (std::ostream& out, const WashingMachine& washingMachine)
 {
     out << "Manufacturer: " << washingMachine.manufacturer << std::endl;

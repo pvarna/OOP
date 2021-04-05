@@ -18,6 +18,11 @@ public:
                    const double electricalConsumption, const int waterConsumption);
 
     bool operator > (const WashingMachine& other);
+    friend bool operator > (const WashingMachine& left, const WashingMachine& right);
+
+    void setMassLaundry(const int massLaundry);
+    void setElConsumption(const double electricalConsumption);
+    void setWaterConsuption(const double waterConsumption);
     
     friend std::ostream& operator << (std::ostream& out, const WashingMachine& washingMachine);
     friend std::istream& operator >> (std::istream& in,  WashingMachine& washingMachine);
