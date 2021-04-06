@@ -79,15 +79,15 @@ Student& Student::operator = (const Student& other)
 
     return *this;
 }
-bool Student::operator == (const Student& other)
+bool Student::operator == (const Student& other) const
 {
     return (strcmp(this->facultyNumber, other.facultyNumber) == 0);
 }
 
-bool operator == (const Student& left, const Student& right)
+/*bool operator == (const Student& left, const Student& right)
 {
     return (strcmp(left.facultyNumber, right.facultyNumber) == 0);
-}
+}*/
 
 bool Student::operator != (const Student& other)
 {

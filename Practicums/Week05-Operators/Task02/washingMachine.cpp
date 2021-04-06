@@ -24,22 +24,13 @@ WashingMachine::WashingMachine(const char* manufacturer, const char* model, cons
     this->waterConsumption = waterConsumption;
 }
 
-bool WashingMachine::operator > (const WashingMachine& other)
+bool WashingMachine::operator > (const WashingMachine& other) const
 {
     return (this->massLaundry > other.massLaundry) || 
            (this->massLaundry == other.massLaundry && this->electricalConsumption < other.electricalConsumption) || 
            
            (this->massLaundry == other.massLaundry && this->electricalConsumption == other.electricalConsumption && 
            this->waterConsumption < other.waterConsumption); 
-}
-
-bool operator > (const WashingMachine& left, const WashingMachine& right)
-{
-    return (left.massLaundry > right.massLaundry) || 
-           (left.massLaundry == right.massLaundry && left.electricalConsumption < right.electricalConsumption) || 
-           
-           (left.massLaundry == right.massLaundry && left.electricalConsumption == right.electricalConsumption && 
-           left.waterConsumption < right.waterConsumption);
 }
 
 void WashingMachine::setMassLaundry(const int massLaundry)

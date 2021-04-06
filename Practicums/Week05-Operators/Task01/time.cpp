@@ -77,20 +77,12 @@ Time operator + (const int hours, Time& other)
     return other + hours;
 }
 
-bool Time::operator > (const Time& other)
+bool Time::operator > (const Time& other) const
 {
     int thisMinutes = this->hours*60 + this->minutes;
     int otherMinutes = other.hours*60 + other.minutes;
 
     return thisMinutes > otherMinutes;
-}
-
-bool operator > (const Time& left, const Time& right)
-{
-    int leftMinutes = left.hours*60 + left.minutes;
-    int rightMinutes = right.hours*60 + right.minutes;
-
-    return leftMinutes > rightMinutes;
 }
 
 void Time::print()

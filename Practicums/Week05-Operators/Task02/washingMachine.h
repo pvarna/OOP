@@ -17,8 +17,7 @@ public:
     WashingMachine(const char* manufacturer, const char* model, const int massLaundry, 
                    const double electricalConsumption, const int waterConsumption);
 
-    bool operator > (const WashingMachine& other);
-    friend bool operator > (const WashingMachine& left, const WashingMachine& right);
+    bool operator > (const WashingMachine& other) const;
 
     void setMassLaundry(const int massLaundry);
     void setElConsumption(const double electricalConsumption);
