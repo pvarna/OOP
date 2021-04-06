@@ -3,6 +3,9 @@
 #include "person.h"
 #include "car.h"
 
+const int INITIAL_CAPACITY = 2;
+const int INCREASE_STEP = 2;
+
 class Parking
 {
 private:
@@ -41,7 +44,7 @@ public:
     void printAllCars();
 
     Person getOwnerByLicensePlate(const char* licensePlate);
-    Car* getCarsByOwner(const char* name, size_t& count);
+    Car* getCarsByOwner(const Person& owner, size_t& count);
 
     ~Parking();
 };

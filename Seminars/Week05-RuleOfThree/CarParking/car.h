@@ -31,6 +31,8 @@ public:
     void setLicensePlate(const char* _licensePlate);
     void setColor(const Color _color);
 
+    bool operator == (const Car& other) const;
+
     void print();
 
     ~Car();

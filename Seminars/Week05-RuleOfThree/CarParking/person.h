@@ -25,6 +25,8 @@ public:
     void setAge(const int _age);
     void setHasDriveLicense(const bool _hasDriveLicense);
 
+    bool operator == (const Person& other) const;
+
     void print();
 
     ~Person();

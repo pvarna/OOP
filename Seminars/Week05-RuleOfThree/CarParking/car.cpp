@@ -154,3 +154,9 @@ Car::~Car()
 {
     deallocate();
 }
+
+bool Car::operator == (const Car& other) const
+{
+    return this->owner == other.owner && strcmp(this->brand, other.brand) == 0 &&
+           strcmp(this->licensePlate, other.licensePlate) == 0 && this->color == other.color;
+}

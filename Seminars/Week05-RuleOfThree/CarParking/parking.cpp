@@ -31,7 +31,7 @@ void Parking::deallocate()
 
 void Parking::resize()
 {
-    this->capacity *= 2;
+    this->capacity *= INCREASE_STEP;
 
     Car* newCars = new Car[this->capacity];
     
@@ -47,7 +47,7 @@ void Parking::resize()
 Parking::Parking() :owner()
 {
     this->nameCompany = nullptr;
-    this->capacity = 2;
+    this->capacity = INITIAL_CAPACITY;
     this->cars = new Car[this->capacity];
     this->size = 0;
 }
@@ -203,11 +203,12 @@ Person Parking::getOwnerByLicensePlate(const char* licensePlate)
     return result;
 }
 
-Car* Parking::getCarsByOwner(const char* name, size_t& count)
+Car* Parking::getCarsByOwner(const Person& owner, size_t& count)
 {
+    count = 0;
     for (int i = 0; i < this->size; ++i)
     {
-        if (strcmp(cars[i].getOwner().getName(), name) == 0)
+        if (cars[i].getOwner() == owner)
         {
             ++count;
         }
@@ -223,7 +224,7 @@ Car* Parking::getCarsByOwner(const char* name, size_t& count)
     int index = 0;
     for (int i = 0; i < this->size; ++i)
     {
-        if (strcmp(cars[i].getOwner().getName(), name) == 0)
+        if (cars[i].getOwner() == owner)
         {
             result[index++] = cars[i];
         }

@@ -95,3 +95,14 @@ Person::~Person()
 {
     deallocate();
 }
+
+bool Person::operator == (const Person& other) const
+{
+    if (!this->name || !other.name)
+    {
+        return this->name == other.name;
+    }
+
+    return strcmp(this->name, other.name) == 0 && this->age == other.age && 
+           this->hasDriveLicense == other.hasDriveLicense;
+}
