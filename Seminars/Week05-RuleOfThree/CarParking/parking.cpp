@@ -9,9 +9,10 @@ void Parking::copy(const Parking& other)
 
     this->owner = other.owner;
     this->capacity = other.capacity;
+    this->size = other.size;
 
-    this->cars = (other.size > this->capacity) ? (new Car[other.size]) : (new Car[this->capacity]);
-    for (int i = 0; i < other.size; ++i)
+    this->cars = new Car[this->capacity];
+    for (int i = 0; i < this->size; ++i)
     {
         this->cars[i] = other.cars[i];
     }
@@ -60,9 +61,11 @@ Parking::Parking(const char* _nameCompany, const Person& _owner, const Car* _car
 
     this->owner = _owner;
     this->capacity = _capacity;
+    this->size = _size;
 
-    this->cars = (_size > this->capacity) ? (new Car[_size]) : (new Car[this->capacity]);
-    for (int i = 0; i < _size; ++i)
+    this->cars = new Car[this->capacity]
+    ;
+    for (int i = 0; i < this->size; ++i)
     {
         this->cars[i] = _cars[i];
     }
