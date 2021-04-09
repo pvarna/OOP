@@ -16,7 +16,7 @@ int main ()
     std::cout << std::boolalpha << (myBackpack[0] == item1) << std::endl;
     std::cout << std::boolalpha << (myBackpack[1] == item2) << std::endl;
 
-    Item item3("neshto", 5, 10);
+    Item item3("neshto", 15, 10);
 
     myBackpack.add(item3);
 
