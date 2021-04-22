@@ -39,6 +39,7 @@ Item::Item()
 
 Item::Item(const char* name, const double weight, const double volume)
 {
+    this->name = nullptr;
     try
     {
         this->name = new char[strlen(name) + 1];    
@@ -47,7 +48,10 @@ Item::Item(const char* name, const double weight, const double volume)
     {
         std::cerr << e.what() << '\n';
     }
-    strcpy(this->name, name);
+    if (this->name)
+    {
+        strcpy(this->name, name);
+    }
 
     this->weight = weight;
     this->volume = volume;

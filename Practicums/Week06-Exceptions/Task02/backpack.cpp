@@ -91,7 +91,7 @@ void Backpack::add(const Item &item)
         std::cerr << e.what() << '\n';
     }
 
-    Item* newItems;
+    Item* newItems = nullptr;
     try
     {
         newItems = new Item[this->size + 1];
@@ -105,9 +105,10 @@ void Backpack::add(const Item &item)
     {
         newItems[i] = this->items[i];
     }
+    
     if (this->items)
     {
-        delete this->items;
+        delete[] this->items;
     }
 
     this->items = newItems;
