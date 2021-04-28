@@ -1,5 +1,6 @@
-drives cars
-writes code
-dances
-plays the guitar
-plays tennis
+0 5 8
+15 survives in FMI
+6 sleeps
+4 eats
+12 plays tennis
+5 swims

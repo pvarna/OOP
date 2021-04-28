@@ -1,10 +1,13 @@
 #include "jedi.h"
 
+int Jedi::version = 1;
+
 Jedi::Jedi()
 {
     this->skills = new char*[INITIAL_CAPACITY];
     this->capacity = INITIAL_CAPACITY;
     this->size = 0;
+    this->age = 0;
 }
 
 void Jedi::copy(const Jedi& other)
@@ -18,6 +21,7 @@ void Jedi::copy(const Jedi& other)
     this->skills = buffer;
     this->size = other.size;
     this->capacity = other.capacity;
+    this->age = other.age;
 }
 
 void Jedi::deallocate()
@@ -63,6 +67,11 @@ Jedi::~Jedi()
     this->deallocate();
 }
 
+void Jedi::setAge(int age)
+{
+    this->age = age;
+}
+
 void Jedi::addNewSkill(const char* skill)
 {
     if (this->size == this->capacity)
@@ -83,27 +92,29 @@ void Jedi::read(const char* filename)
         std::cout << "Error while opening the file" << std::endl;
     }
 
-    int countOfLines = 0;
-    while (!file.eof())
+    this->deallocate();
+
+    file >> this->version >> this->size >> this->capacity;
+    if (this->version >= 1)
     {
-        std::string temp;
-        getline(file, temp);
-        ++countOfLines;
+        file >> this->age;
+    }
+    else
+    {
+        this->age = 0;
     }
 
-    while (this->capacity < countOfLines)
+    this->skills = new char*[this->capacity];
+
+    for (std::size_t i = 0; i < this->size; ++i)
     {
-        this->resize();
-    }
+        std::size_t skillLength = 0;
+        file >> skillLength;
 
-    file.seekg(0, std::ios::beg);
+        this->skills[i] = new char[skillLength + 1];
 
-    while (!file.eof())
-    {
-        char temp[1000];
-        file.getline(temp, 1000);
-
-        this->addNewSkill(temp);
+        file.get();
+        file.getline(this->skills[i], skillLength + 1);
     }
 
     file.close();
@@ -118,9 +129,10 @@ void Jedi::write(const char* filename)
         std::cout << "Error while opening the file" << std::endl;
     }
 
+    file << this->version << " " << this->size << " " << this->capacity << " " << this->age << std::endl; 
     for (std::size_t i = 0; i < this->size; ++i)
     {
-        file << this->skills[i] << std::endl;
+        file << strlen(this->skills[i]) << " " << this->skills[i] << std::endl;
     }
 
     file.close();
@@ -128,10 +140,11 @@ void Jedi::write(const char* filename)
 
 std::ostream& operator << (std::ostream& out, const Jedi& jedi)
 {
+    out << jedi.version << " " << jedi.size << " " << jedi.capacity << " " << jedi.age << std::endl;
     for (std::size_t i = 0; i < jedi.size; ++i)
     {
         out << jedi.skills[i] << std::endl;
     }
-
+    
     return out;
 }

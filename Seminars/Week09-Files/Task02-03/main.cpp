@@ -8,6 +8,9 @@ int main ()
     pesho.addNewSkill("survives in FMI");
     pesho.addNewSkill("sleeps");
     pesho.addNewSkill("eats");
+    pesho.addNewSkill("plays tennis");
+    pesho.addNewSkill("swims");
+    pesho.setAge(19);
 
     pesho.write("jedi1.txt");
     

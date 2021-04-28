@@ -1,3 +1,6 @@
-survives in FMI
-sleeps
-eats
+1 5 8 19
+15 survives in FMI
+6 sleeps
+4 eats
+12 plays tennis
+5 swims

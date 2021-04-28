@@ -12,11 +12,11 @@ const std::size_t INCREASE_STEP = 2;
 class Jedi
 {
 private:
-    //todo: static member "version"
+    static int version;
     char** skills;
     std::size_t size;
     std::size_t capacity;
-    //todo: age
+    int age;
 
     void copy(const Jedi& other);
     void deallocate();
@@ -28,6 +28,7 @@ public:
     Jedi& operator = (const Jedi& other);
     ~Jedi();
 
+    void setAge(int age);
     void addNewSkill(const char* skill);
     
     void read(const char* filename);
