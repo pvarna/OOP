@@ -1,11 +1,6 @@
 #include <iostream>
-#include <fstream>
-#include <cstddef>
 #include <cstring>
-#include "student.h"
 #include "utils.h"
-
-const int BUFFER_LINE_SIZE = 1024;
 
 int main ()
 {
@@ -15,7 +10,9 @@ int main ()
     char fileName[BUFFER_LINE_SIZE];
     std::cin.getline(fileName, BUFFER_LINE_SIZE);
 
-    std::size_t studentsCount = getNumberOfLines(fileName) - 1;
+    int studentsCount = getCountOfLines(fileName) - 1;
+
+    std::cout << "Count of students: " << studentsCount << std::endl;
 
     if (studentsCount <= 0)
     {
@@ -30,9 +27,13 @@ int main ()
     if (!file.is_open())
     {
         std::cout << "Error!" << std::endl;
+
 		delete[] studentsCollection;
+
 		return -1;
     }
+
+    //std::cout << "Stigash li tuka" << std::endl;
 
     int line = 1;
 	while (!file.eof())
@@ -46,12 +47,19 @@ int main ()
 			continue;
 		}
 
-		readStudent(temp, studentsCollection[line - 1]);
+        //std::cout << "Stigash li tuka" << line << std::endl;
+
+		readStudent(temp, studentsCollection[line - 2]);
 		++line;
 	}
     file.close();
 
     std::cout << "File successfully opened!" << std::endl;
+
+    /*for (std::size_t i = 0; i < studentsCount; ++i)
+    {
+        std::cout << studentsCollection[i].firstName << " " << studentsCollection[i].family << " " << studentsCollection[i].email << " " << studentsCollection[i].facultyNumber << std::endl;
+    }*/
 
     char commandLine[BUFFER_LINE_SIZE];
     do
@@ -88,6 +96,8 @@ int main ()
         if (strcmp(commandFirstArgument, "print") == 0)
         {
             int facultyNumber = atoi(commandSecondArgument);
+
+            //std::cout << "Stigash li tuka?? Ako da, kolko e fn-to " << facultyNumber << std::endl;
 
             bool result = printStudent(studentsCollection, studentsCount, facultyNumber);
 
@@ -146,6 +156,6 @@ int main ()
     } while (strcmp(commandLine, "quit"));
     
     delete[] studentsCollection;
+
     return 0;
 }
-

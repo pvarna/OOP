@@ -1,7 +1,6 @@
 #pragma once
 
 const int FIELD_MAX_SIZE = 50;
-
 struct Student
 {
     char firstName[FIELD_MAX_SIZE];

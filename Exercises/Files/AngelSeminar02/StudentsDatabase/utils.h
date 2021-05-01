@@ -1,9 +1,14 @@
 #pragma once
 
+#include <iostream>
+#include <fstream>
 #include <cstddef>
+#include <cstring>
 #include "student.h"
 
-int getNumberOfLines(const char* fileName);
+const int BUFFER_LINE_SIZE = 1024;
+
+int getCountOfLines(const char* fileName);
 
 void readStudent(const char* line, Student& student);
 

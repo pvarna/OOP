@@ -1,29 +1,28 @@
-#include <iostream>
-#include <fstream>
-#include <cstring>
 #include "utils.h"
 
-int getNumberOfLines(const char* fileName)
+int getCountOfLines(const char* fileName)
 {
     std::ifstream file(fileName);
 
     if (!file.is_open())
     {
+        std::cout << "Error" << std::endl;
         return -1;
     }
 
     int counter = 0;
     while (!file.eof())
     {
-        std::string temp;
-        getline(file, temp);
+        char temp[BUFFER_LINE_SIZE];
+        file.getline(temp, BUFFER_LINE_SIZE);
         ++counter;
     }
 
     file.close();
 
-    return counter;    
+    return counter;
 }
+
 
 // firstName, Family, email, fn
 void readStudent(const char* line, Student& student)
@@ -55,7 +54,7 @@ void readStudent(const char* line, Student& student)
         student.email[emailIndex++] = line[index++];
     }
     student.email[emailIndex] = '\0';
-    +index;
+    ++index;
 
     // fn
     while (line[index] != '\0')
