@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <vector>
 #include <iostream>
+#include <string>
+#include <fstream>
 
 template <class T>
 class Set
@@ -23,6 +25,9 @@ public:
     Set<T> operator + (Set<T>& other);
     Set<T> operator * (Set<T>& other);
     Set<T> operator - (Set<T>& other);
+
+    void writeIntoFile(std::string fileName);
+    void readFromFile(std::string fileName);
 
     template <typename C>
     friend std::ostream& operator << (std::ostream& out, Set<C>& set);
@@ -166,4 +171,48 @@ std::ostream& operator << (std::ostream& out, Set<T>& set)
     }
 
     return out;
+}
+
+template <class T>
+void Set<T>::writeIntoFile(std::string fileName)
+{
+    std::ofstream file(fileName.c_str());
+
+    if (!file.is_open())
+    {
+        std::cout << "Error" << std::endl;
+        return;
+    }
+
+    std::size_t size = this->getSize();
+    for (std::size_t i = 0; i < size; ++i)
+    {
+        file.write((const char*)&this->data[i], sizeof(T));
+    }
+
+    file.close();
+}
+
+template <class T>
+void Set<T>::readFromFile(std::string fileName)
+{
+    std::ifstream file(fileName.c_str());
+
+    if (!file.is_open())
+    {
+        std::cout << "Error" << std::endl;
+        return;
+    }
+
+    while (!file.eof())
+    {
+        T temp;
+        file.read((char*)&temp, sizeof(T));
+        if (!file.eof())
+        {
+            this->add(temp);
+        }
+    }
+
+    file.close();
 }

@@ -27,5 +27,10 @@ int main ()
     std::cout << set4 << std::endl;
     std::cout << set5 << std::endl;
     
+    set1.writeIntoFile("data.dat");
+    Set<int> copyOfSet1;
+    copyOfSet1.readFromFile("data.dat");
+    std::cout << "Copy " << copyOfSet1 << std::endl;
+
     return 0;
 }
